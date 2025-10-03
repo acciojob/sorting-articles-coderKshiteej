@@ -5,23 +5,24 @@ const bands = [
   'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'
 ];
 
-// Function to strip leading articles "a ", "an ", "the "
+// Function to remove leading articles
 function stripArticle(name) {
   return name.replace(/^(a |an |the )/i, '').trim();
 }
 
-// Sort ignoring leading articles and case with localeCompare sensitivity 'base'
-const sortedBands = bands.sort((a, b) => {
+// Sort the bands ignoring articles and case
+const sortedBands = bands.slice().sort((a, b) => {
   const nameA = stripArticle(a);
   const nameB = stripArticle(b);
-  // Sensitivity 'base' ignores case and diacritics, resulting in consistent, correct order
-  return nameA.localeCompare(nameB, undefined, { sensitivity: "base" });
+  return nameA.localeCompare(nameB, undefined, { sensitivity: 'base' });
 });
 
-// Inject sorted band names into the ul#band element as li elements
-const ul = document.getElementById('band');
-sortedBands.forEach(band => {
-  const li = document.createElement('li');
-  li.textContent = band;
-  ul.appendChild(li);
+// Add sorted bands to the DOM
+document.addEventListener('DOMContentLoaded', () => {
+  const ul = document.getElementById('band');
+  sortedBands.forEach(band => {
+    const li = document.createElement('li');
+    li.textContent = band;
+    ul.appendChild(li);
+  });
 });

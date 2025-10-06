@@ -11,7 +11,7 @@ function stripArticle(name) {
   return name.replace(/^(a |an |the )/i, '').trim().toLowerCase();
 }
 
-// Sort the bands ignoring articles, preserving original casing and duplicates
+// Sort the bands ignoring articles, preserving original order for duplicates
 const sortedBands = bands
   .map((band, index) => ({ original: band, key: stripArticle(band), index }))
   .sort((a, b) => {

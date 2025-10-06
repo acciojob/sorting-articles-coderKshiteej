@@ -1,15 +1,14 @@
-/*  your css code here. If applicable */
-/* Optional styling */
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
+  background-color: red;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+footer {
+  background-color: blue;
+  height: 100px;
 }
 
-li {
-  margin: 5px 0;
+.container {
+  width: 500px;
+  height: 500px;
+  background-color: white;
 }

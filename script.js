@@ -20,11 +20,14 @@ const sortedBands = bands
   })
   .map(item => item.original);
 
-// Display the sorted list
+// Display the sorted list inside #band-list
+const container = document.getElementById('band-list');
 const ul = document.createElement('ul');
+
 sortedBands.forEach(band => {
   const li = document.createElement('li');
   li.textContent = band;
   ul.appendChild(li);
 });
-document.body.appendChild(ul);
+
+container.appendChild(ul);

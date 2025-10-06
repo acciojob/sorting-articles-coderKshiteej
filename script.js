@@ -6,15 +6,19 @@ const bands = [
   'Sun Aruption'
 ];
 
-// Helper function to strip leading articles
+// Helper function to strip leading articles and normalize case
 function stripArticle(name) {
-  return name.replace(/^(a |an |the )/i, '').trim();
+  return name.replace(/^(a |an |the )/i, '').trim().toLowerCase();
 }
 
-// Sort the bands ignoring articles
+// Sort the bands ignoring articles, preserving original casing and duplicates
 const sortedBands = bands
-  .slice()
-  .sort((a, b) => stripArticle(a).localeCompare(stripArticle(b)));
+  .map((band, index) => ({ original: band, key: stripArticle(band), index }))
+  .sort((a, b) => {
+    const cmp = a.key.localeCompare(b.key);
+    return cmp !== 0 ? cmp : a.index - b.index; // stable sort
+  })
+  .map(item => item.original);
 
 // Display the sorted list
 const ul = document.createElement('ul');
